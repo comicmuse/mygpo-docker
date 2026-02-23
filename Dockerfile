@@ -1,12 +1,12 @@
-FROM python:3.8-alpine as base
+FROM python:3.12-alpine AS base
 
-FROM base as builder
+FROM base AS builder
 
 WORKDIR /usr/src/
 
 RUN apk update && apk add git postgresql-dev gcc python3-dev musl-dev libffi-dev zlib-dev jpeg-dev
 
-RUN git clone git://github.com/gpodder/mygpo.git
+RUN git clone https://github.com/gpodder/mygpo.git
 
 WORKDIR /usr/src/mygpo 
 

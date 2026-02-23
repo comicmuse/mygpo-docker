@@ -1,6 +1,5 @@
 # After initial start need to do 
 #     docker exec -it gpodder_app_1 python manage.py migrate
-version: '2.0'
 
 volumes:
     db:
@@ -25,7 +24,6 @@ services:
             - "8000:8000"
         networks:
             - default
-            - caddy
 
     db:
         image: "postgres:13.2-alpine"
@@ -36,7 +34,6 @@ services:
         environment:
             POSTGRES_USER: mygpo
             POSTGRES_PASSWORD: mygpo
-        restart: always
         expose: 
             - "5432"
 
@@ -84,7 +81,3 @@ services:
             - "redis://redis:6379//"
             - worker
 
-networks:
-    caddy:
-        external:
-            name: caddy_default
